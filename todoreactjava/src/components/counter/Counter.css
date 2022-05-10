@@ -1,8 +1,8 @@
 button {
   background-color: green;
-  font-size: 16px;
+  font-size: 20px;
   padding: 20px;
-  margin: 20px 20px;
+  margin: 1px;
 }
 .count {
   color: blue;
