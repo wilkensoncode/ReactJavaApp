@@ -11,9 +11,7 @@ class HeaderComponent extends Component {
         <nav className="navbar navbar-expand-md navbar-dark bg-green">
           <div>
             <Link to="/">
-              <a href="" className="navbar-brand text-dark">
-                PersnalTask
-              </a>
+              <a className="navbar-brand text-dark">PersnalTask</a>
             </Link>
           </div>
 
