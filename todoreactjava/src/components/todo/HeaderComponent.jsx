@@ -10,11 +10,10 @@ class HeaderComponent extends Component {
       <header>
         <nav className="navbar navbar-expand-md navbar-dark bg-green">
           <div>
-            <Link to="/">
-              <a className="navbar-brand text-dark">PersnalTask</a>
+            <Link to="/" className="navbar-brand text-dark">
+              PersonalTask
             </Link>
           </div>
-
           <ul className="navbar-nav">
             <li>
               {isUserLoggedIn && (
