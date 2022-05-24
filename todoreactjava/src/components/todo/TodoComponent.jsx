@@ -2,18 +2,38 @@ import React, { Component } from "react";
 import moment from "moment";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
+import AuthenticationService from "./AuthenticationService";
+import TodoDataService from "../../api/todo/TodoDataService";
+
+//retrieve logged in user
+const USER = AuthenticationService.getUserLoggedIn();
+
 class TodoComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
       id: this.props.match.params.id,
-      description: "Learn React ",
+      description: "",
       targetDate: moment(new Date()).format("YYYY-MM-DD"),
     };
+
     this.submitForm = this.submitForm.bind(this);
     this.validate = this.validate.bind(this);
   }
 
+  componentDidMount() {
+    //prettier-ignore
+    // if its a new todo no need to call retrieve todo
+    if (this.state.id==-1) {
+      return
+    }
+    TodoDataService.retrieveTodo(USER, this.state.id).then((res) =>
+      this.setState({
+        description: res.data.description,
+        targetDate: moment(res.data.targetDate).format("YYYY-MM-DD"),
+      })
+    );
+  }
   // validate form values
   validate(values) {
     let error = {};
@@ -34,8 +54,24 @@ class TodoComponent extends Component {
   }
 
   submitForm(values) {
-    console.log(values);
+    // prettier-ignore
+    const todo ={
+      id:this.state.id,
+      description:values.description,
+      targetDate:values.targetDate
+    }
+
+    if (this.state.is === -1) {
+      TodoDataService.createTodo(USER, todo).then(() =>
+        this.props.history.push(`/todos`)
+      );
+    } else {
+      TodoDataService.updateTodo(USER, this.state.id, todo).then(() =>
+        this.props.history.push(`/todos`)
+      );
+    }
   }
+
   render() {
     const { description, targetDate } = this.state;
 
@@ -49,6 +85,8 @@ class TodoComponent extends Component {
             validateOnchange={false}
             validateOnblur={false}
             validate={this.validate}
+            // populate form field when update is clicked
+            enableReinitialize={true}
           >
             {(props) => (
               <Form>

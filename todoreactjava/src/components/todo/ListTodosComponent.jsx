@@ -17,10 +17,11 @@ class ListTodosComponent extends Component {
     this.updateTodo = this.updateTodo.bind(this);
     this.deleteTodo = this.deleteTodo.bind(this);
     this.refreshTodos = this.refreshTodos.bind(this);
+    this.addTodo = this.addTodo.bind(this);
   }
 
   componentDidMount() {
-    //@param check that user is logged in and set the state on load
+    // console.log("user", USER);
     this.refreshTodos();
   }
 
@@ -32,15 +33,18 @@ class ListTodosComponent extends Component {
     this.setState({ todos: res.data })
     );
   }
+  // add a new todo
+  addTodo() {
+    //-1 to indicate this is a new todo
+    this.props.history.push(`/todos/-1`);
+  }
 
   //update a todo
   updateTodo(id) {
-    //prettier-ignore
-    console.log(id);
     this.props.history.push(`/todos/${id}`);
   }
 
-  //detet a todo
+  //detete a todo
   deleteTodo(id) {
     //prettier-ignore
     TodoDataService.deleteTodo(USER, id)
@@ -51,21 +55,22 @@ class ListTodosComponent extends Component {
   render() {
     return (
       <div>
-        <h1>My Todos</h1>
+        <h1>Personal Task</h1>
         {/* delte successful message to user */}
         {this.state.deleteTodoMes && (
           <div className=" alert alert-success">{this.state.deleteTodoMes}</div>
         )}
 
         <div className="container">
-          <table className="table">
-            <thead>
+          <table className="table table-dark table-striped">
+            <thead className="thead-dark">
               <tr>
-                <th>description</th>
-                <th>target date</th>
-                <th>is completed</th>
-                <th>Update</th>
-                <th>Delete</th>
+                <th scope="col">description</th>
+                <th scope="col">target date</th>
+                <th scope="col">is completed</th>
+                <th scope="col">Action</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
@@ -77,6 +82,14 @@ class ListTodosComponent extends Component {
                   <td>
                     <button
                       className="btn btn-success btn-sm"
+                      onClick={this.addTodo}
+                    >
+                      Add
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      className="btn btn-warning btn-sm"
                       onClick={() => this.updateTodo(todo.id)}
                     >
                       Update
