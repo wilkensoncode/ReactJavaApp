@@ -10,7 +10,7 @@ class HeaderComponent extends Component {
       <header>
         <nav className="navbar navbar-expand-md navbar-dark bg-green">
           <div>
-            <Link to="/" className="navbar-brand text-dark">
+            <Link to="/todos" className="navbar-brand text-dark">
               PersonalTask
             </Link>
           </div>

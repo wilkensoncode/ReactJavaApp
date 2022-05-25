@@ -34,12 +34,6 @@ class WelcomeComponent extends Component {
   }
 
   retrieveMessage() {
-    // ApiService.executeApiService().then((res) => this.handleSuccessfulRes(res));
-
-    // ApiService.executeApiBeanService().then((res) =>
-    //   this.handleSuccessfulRes(res)
-    // );
-
     ApiService.executeApiPathVeriableService(this.props.match.params.name)
       .then((res) => this.handleSuccessfulRes(res))
       .catch((error) => this.handleError(error));

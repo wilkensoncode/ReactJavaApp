@@ -22,7 +22,7 @@ class LoginComponent extends Component {
   }
 
   loginClicked() {
-    if (this.state.username === "will" && this.state.password === "will") {
+    if (this.state.username === "java" && this.state.password === "java") {
       AuthenticationService.registerSuccesfullLogin(
         this.state.username,
         this.state.password

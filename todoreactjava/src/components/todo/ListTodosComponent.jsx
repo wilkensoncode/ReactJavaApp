@@ -62,14 +62,13 @@ class ListTodosComponent extends Component {
         )}
 
         <div className="container">
-          <table className="table table-dark table-striped">
-            <thead className="thead-dark">
+          <table className="table table-dark table-striped table-hover">
+            <thead>
               <tr>
-                <th scope="col">description</th>
-                <th scope="col">target date</th>
-                <th scope="col">is completed</th>
+                <th scope="col">Description</th>
+                <th scope="col">Is completed</th>
+                <th scope="col">Target date</th>
                 <th scope="col">Action</th>
-                <th scope="col"></th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -79,14 +78,6 @@ class ListTodosComponent extends Component {
                   <td>{todo.description}</td>
                   <td>{todo.done.toString()}</td>
                   <td>{todo.targetDate.toString()}</td>
-                  <td>
-                    <button
-                      className="btn btn-success btn-sm"
-                      onClick={this.addTodo}
-                    >
-                      Add
-                    </button>
-                  </td>
                   <td>
                     <button
                       className="btn btn-warning btn-sm"
@@ -107,6 +98,11 @@ class ListTodosComponent extends Component {
               ))}
             </tbody>
           </table>
+          <div className="bg-dark">
+            <button className="btn btn-success btn-sm" onClick={this.addTodo}>
+              ADD
+            </button>
+          </div>
         </div>
       </div>
     );
