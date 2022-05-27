@@ -45,8 +45,18 @@ class WelcomeComponent extends Component {
   }
 
   handleError(error) {
+    let errMes = " ";
+    //if there is an error append to errMes
+    if (error.message) {
+      errMes += error.message;
+    }
+    // if there is a response and response has data append to errMess
+    if (error.response && error.response.data) {
+      errMes += error.message;
+    }
+    //setting the state show client errMess
     this.setState({
-      error: error.response.data.message,
+      error: errMes,
     });
   }
 }
