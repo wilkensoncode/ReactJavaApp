@@ -10,16 +10,19 @@ class ApiService {
   }
 
   executeApiPathVeriableService(name) {
-    let username = "user";
-    let password = "password";
+    // let username = "user";
+    // let password = "password";
 
-    let basicAuthHeader = "Basic " + window.btoa(username + ":" + password);
+    // let basicAuthHeader = "Basic " + window.btoa(username + ":" + password);
 
-    return axios.get(`http://localhost:8080/hello/path-variable/${name}`, {
-      headers: {
-        authorization: basicAuthHeader,
-      },
-    });
+    return axios.get(
+      `http://localhost:8080/hello/path-variable/${name}`
+      // , {
+      //   headers: {
+      //     authorization: basicAuthHeader,
+      //   },
+      // }
+    );
   }
 }
 
